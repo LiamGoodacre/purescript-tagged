@@ -16,6 +16,6 @@
     "bower.json"
   ],
   "dependencies": {
-    "purescript-identity": "^2.0.0"
+    "purescript-identity": "^3.1.0"
   }
 }
