@@ -7,9 +7,9 @@ import Control.Extend (class Extend)
 import Data.Foldable (class Foldable)
 import Data.Functor.Invariant (class Invariant)
 import Data.Identity (Identity(..))
-import Data.Monoid (class Monoid)
 import Data.Newtype (class Newtype)
 import Data.Traversable (class Traversable)
+import Data.Profunctor (class Profunctor)
 
 newtype Tagged t a = Tagged (Identity a)
 
@@ -38,7 +38,7 @@ derive newtype instance applyTagged :: Apply (Tagged t)
 derive newtype instance altTagged :: Alt (Tagged t)
 derive newtype instance invariantTagged :: Invariant (Tagged t)
 derive newtype instance functorTagged :: Functor (Tagged t)
-derive newtype instance fieldTagged :: Field a => Field (Tagged t a)
+--derive newtype instance divisionRingTagged :: DivisionRing a => DivisionRing (Tagged t a)
 derive newtype instance commutativeRingTagged :: CommutativeRing a => CommutativeRing (Tagged t a)
 derive newtype instance ringTagged :: Ring a => Ring (Tagged t a)
 derive newtype instance euclideanRingTagged :: EuclideanRing a => EuclideanRing (Tagged t a)
@@ -50,4 +50,7 @@ derive newtype instance heytingAlgebraTagged :: HeytingAlgebra a => HeytingAlgeb
 derive newtype instance boundedTagged :: Bounded a => Bounded (Tagged t a)
 derive newtype instance ordTagged :: Ord a => Ord (Tagged t a)
 derive newtype instance eqTagged :: Eq a => Eq (Tagged t a)
+
+instance profunctorTagged :: Profunctor Tagged where
+  dimap _ g (Tagged (Identity o)) = Tagged (Identity (g o))
 
