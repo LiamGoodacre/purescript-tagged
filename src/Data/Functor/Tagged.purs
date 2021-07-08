@@ -11,6 +11,7 @@ import Data.Newtype (class Newtype)
 import Data.Traversable (class Traversable)
 import Data.Profunctor (class Profunctor)
 
+newtype Tagged :: forall k. k -> Type -> Type
 newtype Tagged t a = Tagged (Identity a)
 
 tagged :: forall t a. a -> Tagged t a
@@ -19,9 +20,7 @@ tagged a = Tagged (Identity a)
 untagged :: forall t a. Tagged t a -> a
 untagged (Tagged (Identity a)) = a
 
-instance newtypeTagged :: Newtype (Tagged t a) a where
-  wrap = tagged
-  unwrap = untagged
+instance newtypeTagged :: Newtype (Tagged t a) a
 
 instance showTagged :: Show a => Show (Tagged t a) where
   show x = "(tagged " <> show (untagged x) <> ")"
