@@ -6,3 +6,5 @@
 /.psc*
 /.psa*
 /.spago/
+/package.json
+/package-lock.json
