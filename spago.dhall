@@ -10,4 +10,6 @@
     ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs" ]
+, license = "MIT"
+, repository = "https://github.com/LiamGoodacre/purescript-tagged"
 }
